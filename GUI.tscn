@@ -1,0 +1,42 @@
+[gd_scene format=2]
+
+[node name="ControlGUI" type="Control"]
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="FlipButton" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 26.0
+margin_top = -89.0
+margin_right = 96.0
+margin_bottom = -17.0
+shortcut_in_tooltip = false
+text = "FLIP"
+
+[node name="Right Button" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -88.0
+margin_top = -89.0
+margin_right = -18.0
+margin_bottom = -17.0
+shortcut_in_tooltip = false
+text = "----->"
+
+[node name="Left Button" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -187.0
+margin_top = -89.0
+margin_right = -117.0
+margin_bottom = -17.0
+shortcut_in_tooltip = false
+text = "<-----"
