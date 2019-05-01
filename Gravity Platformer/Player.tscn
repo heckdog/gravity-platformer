@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://UpBox.png" type="Texture" id=2]
 [ext_resource path="res://DownBox.png" type="Texture" id=3]
 [ext_resource path="res://Switch.wav" type="AudioStream" id=4]
+[ext_resource path="res://Impact.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 50 )
@@ -46,3 +47,6 @@ margin_right = 48.0
 margin_bottom = -56.0
 text = "DEBUG INFO"
 align = 1
+
+[node name="Impact" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
