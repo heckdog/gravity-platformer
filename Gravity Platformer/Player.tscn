@@ -1,13 +1,13 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://UpBox.png" type="Texture" id=2]
-[ext_resource path="res://DownBox.png" type="Texture" id=3]
-[ext_resource path="res://Switch.wav" type="AudioStream" id=4]
-[ext_resource path="res://Impact.wav" type="AudioStream" id=5]
+[ext_resource path="res://assests/UpBox.png" type="Texture" id=2]
+[ext_resource path="res://assests/DownBox.png" type="Texture" id=3]
+[ext_resource path="res://assests/Switch.wav" type="AudioStream" id=4]
+[ext_resource path="res://assests/Impact.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 50, 50 )
+extents = Vector2( 24.9, 24.9 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -34,6 +34,7 @@ __meta__ = {
 }
 
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 animation = "up"
 
@@ -41,10 +42,10 @@ animation = "up"
 stream = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = -48.0
-margin_top = -70.0
-margin_right = 48.0
-margin_bottom = -56.0
+margin_left = -42.0
+margin_top = -45.0
+margin_right = 42.0
+margin_bottom = -31.0
 text = "DEBUG INFO"
 align = 1
 

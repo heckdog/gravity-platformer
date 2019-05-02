@@ -4,9 +4,12 @@ extends KinematicBody2D
 var state = "up"
 var impact
 
-var gravity = 2500
+var gravity = 2000
 var walkspeed = 350
 var velocity = Vector2()
+
+# Load Global variables
+onready var globals = get_node("/root/Globals")
 
 
 # Called when the node enters the scene tree for the first time.
