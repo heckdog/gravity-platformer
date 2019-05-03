@@ -5,7 +5,8 @@ var state = "up"
 var impact
 
 var gravity = 2000
-var walkspeed = 350
+var max_walkspeed = 350
+var walkspeed = 0
 var velocity = Vector2()
 
 # Load Global variables
@@ -40,12 +41,30 @@ func get_input():
 	velocity.x = 0
 	var left = Input.is_action_pressed("ui_left")
 	var right = Input.is_action_pressed("ui_right")
+	var shift = Input.is_action_pressed("ui_shift")
 	
-	if left:
-		velocity.x += -walkspeed
-	if right:
-		velocity.x += walkspeed
-		
+	# movement w/ acceleration (accel = exponentional halves)
+	if left and shift:
+		walkspeed = -3 # precision move
+	elif left:  # check for left after the check for shifted.
+		walkspeed += (-max_walkspeed - walkspeed-1)/2  # negative average of walkspeed to max
+	if right and shift:
+		walkspeed = 3
+	elif right:  # same check, but for right
+		walkspeed += (max_walkspeed + walkspeed+1)/2  # average of walkspeed to max
+	if not left or right:
+		if walkspeed > 0:
+			walkspeed = floor(walkspeed/2)  # divides speed by 2 until you stop. rounded down.
+		elif walkspeed < 0:
+			walkspeed = ceil(walkspeed/2)  # same as above, just in the case of negative numbers
+	if left and right:
+		walkspeed = 0
+	
+	# check for speeders
+	if walkspeed > max_walkspeed:
+		walkspeed = max_walkspeed
+	velocity.x += walkspeed  # this may need a += instead of an =
+	print(velocity.x)
 	
 	
 func _physics_process(delta):

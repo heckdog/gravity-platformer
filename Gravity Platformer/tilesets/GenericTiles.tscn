@@ -1,10 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assests/tiles/GenericTile.png" type="Texture" id=1]
 [ext_resource path="res://assests/tiles/Grass.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25, 25 )
+
+[sub_resource type="StreamTexture" id=3]
+flags = 4
+load_path = "res://.import/GenericTile.png-2df85e67272fdc512977fc2eb6e454a8.stex"
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 25, 24 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 25, 25 )
@@ -21,6 +28,16 @@ collision_mask = 15
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Generic/StaticBody2D"]
 visible = false
 shape = SubResource( 1 )
+
+[node name="ForgivingVertical" type="Sprite" parent="."]
+position = Vector2( 225, 25 )
+texture = SubResource( 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ForgivingVertical"]
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ForgivingVertical/StaticBody2D"]
+shape = SubResource( 4 )
 
 [node name="Grass" type="Sprite" parent="."]
 position = Vector2( 125, 25 )
