@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://tilesets/generic_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://WinZone.tscn" type="PackedScene" id=4]
 
 [node name="Map1" type="Node2D"]
 
@@ -16,6 +17,12 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 124, 525 )
+position = Vector2( 125, 525 )
 
 [node name="GUI" parent="." instance=ExtResource( 3 )]
+
+[node name="WinZone" parent="." instance=ExtResource( 4 )]
+position = Vector2( 975, 75 )
+next_level = "Map3"
+[connection signal="level_complete" from="Player" to="WinZone" method="_on_Player_level_complete"]
+[connection signal="area_entered" from="WinZone" to="Player" method="_on_WinZone_area_entered"]

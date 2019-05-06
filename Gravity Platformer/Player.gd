@@ -1,4 +1,5 @@
 extends KinematicBody2D
+signal level_complete
 
 # Declare member variables here. Examples:
 var state = "up"
@@ -15,7 +16,7 @@ onready var globals = get_node("/root/Globals")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -64,7 +65,7 @@ func get_input():
 	if walkspeed > max_walkspeed:
 		walkspeed = max_walkspeed
 	velocity.x += walkspeed  # this may need a += instead of an =
-	print(velocity.x)
+	#print(velocity.x)
 	
 	
 func _physics_process(delta):
@@ -72,13 +73,26 @@ func _physics_process(delta):
 	
 	# actual physics
 	velocity.y += gravity * delta
+	velocity.x = round(velocity.x)
 	get_input()
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 	
-	$Label.text = str(old_posy)  # debug
+	#check collisions
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		var collide_name = collision.collider.name
+		if collide_name != "TileMap":
+			print("Collided with: ", collide_name)
+			if collide_name == "WinZone":
+				emit_signal("level_complete")
+	
 	# Hit Sound
 	var new_posy = round(position.y)
 	if old_posy != new_posy:
 		if velocity.y == 0:
 			$Impact.play()
 	
+
+func _on_WinZone_area_entered(area):
+	emit_signal("level_complete")
+	print("IN ENDZONE")
