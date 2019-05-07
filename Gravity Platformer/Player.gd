@@ -1,8 +1,8 @@
 extends KinematicBody2D
 signal level_complete
 
-# Declare member variables here. Examples:
-var state = "up"
+# Declare member variables here.
+var state = "down"
 var impact
 
 var gravity = 2000
@@ -10,13 +10,28 @@ var max_walkspeed = 350
 var walkspeed = 0
 var velocity = Vector2()
 
+var spikes = null
+var completable = false  # by default. see _ready()
+
 # Load Global variables
 onready var globals = get_node("/root/Globals")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	add_to_group("player")  # allows for detection easier. also will make this work if multiplayer is added
+	
+	# check for existing winzone and spike group. makes it so in-dev levels dont crash
+	if get_parent().has_node("WinZone"):
+		completable = true
+	if get_tree().has_group("spikes"):
+		spikes = get_tree().get_nodes_in_group("spikes")
+	# debug
+	if not completable:
+		print("WARNING: Level is missing WinZone. Can't complete.")
+	if not spikes:
+		print("No spikes detected")
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -83,8 +98,9 @@ func _physics_process(delta):
 		var collide_name = collision.collider.name
 		if collide_name != "TileMap":
 			print("Collided with: ", collide_name)
-			if collide_name == "WinZone":
-				emit_signal("level_complete")
+			if completable:  # check that is actually exists before calling it
+				if collide_name == "WinZone":
+					emit_signal("level_complete")
 	
 	# Hit Sound
 	var new_posy = round(position.y)
