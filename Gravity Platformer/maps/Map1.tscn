@@ -26,5 +26,4 @@ next_level = "Map3"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource( 4 )]
-[connection signal="level_complete" from="Player" to="WinZone" method="_on_Player_level_complete"]
 [connection signal="area_entered" from="WinZone" to="Player" method="_on_WinZone_area_entered"]

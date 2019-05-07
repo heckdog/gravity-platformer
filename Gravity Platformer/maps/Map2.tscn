@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://tilesets/generic_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://WinZone.tscn" type="PackedScene" id=4]
 
-[node name="Map1" type="Node2D"]
+[node name="Map2" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -21,3 +22,7 @@ position = Vector2( 143.644, 423.098 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource( 3 )]
+
+[node name="WinZone" parent="." instance=ExtResource( 4 )]
+position = Vector2( 725, 525 )
+next_level = "VelocityTest"

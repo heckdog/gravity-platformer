@@ -20,5 +20,5 @@ func _on_Player_level_complete():
 
 func _on_WinZone_body_entered(body):
 	if body.is_in_group("player"):
-		print("PLAYER REACHED END")
+		print("PLAYER REACHED END\n")
 		get_tree().change_scene(next_level)

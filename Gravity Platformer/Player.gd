@@ -1,5 +1,4 @@
 extends KinematicBody2D
-signal level_complete
 
 # Declare member variables here.
 var state = "down"
@@ -9,6 +8,8 @@ var gravity = 2000
 var max_walkspeed = 350
 var walkspeed = 0
 var velocity = Vector2()
+export var terminal_velocity = 3500
+var wham_count = 0
 
 var spikes = null
 var completable = false  # by default. see _ready()
@@ -85,12 +86,16 @@ func get_input():
 	
 func _physics_process(delta):
 	var old_posy = round(position.y)  # round due to sub pixel differences
+	var old_speed = round(velocity.y)
 	
 	# actual physics
 	velocity.y += gravity * delta
+	velocity.y = clamp(velocity.y, -terminal_velocity, terminal_velocity)
 	velocity.x = round(velocity.x)
 	get_input()
 	velocity = move_and_slide(velocity, Vector2(0, -1))
+	
+	#print("V-SPEED: " + str(velocity.y))
 	
 	#check collisions
 	for i in get_slide_count():
@@ -98,17 +103,29 @@ func _physics_process(delta):
 		var collide_name = collision.collider.name
 		if collide_name != "TileMap":
 			print("Collided with: ", collide_name)
-			if completable:  # check that is actually exists before calling it
-				if collide_name == "WinZone":
-					emit_signal("level_complete")
 	
 	# Hit Sound
 	var new_posy = round(position.y)
 	if old_posy != new_posy:
 		if velocity.y == 0:
 			$Impact.play()
+			print(abs(new_posy-old_posy))
+			
+		# WHAM
+		print(abs(old_speed-velocity.y))
+		if abs(old_speed-velocity.y) >= 3100:  # 3100 is the px/s speed required to create a WHAM
+			print("WHAM " + str(wham_count))
+			wham_count += 1
+			$Wham.play()
+			
+			var cam = $Camera2D
+			cam.offset.x = rand_range(0,10)
+			yield(get_tree().create_timer(.1), "timeout")
+			cam.offset.y = rand_range(0,25)
+			yield(get_tree().create_timer(.1), "timeout")
+			cam.offset.x = rand_range(-10,0)
+			yield(get_tree().create_timer(.1), "timeout")
+			cam.offset.y = rand_range(-20,0)
+			yield(get_tree().create_timer(.1), "timeout")
+			cam.offset = Vector2(0,0)
 	
-
-func _on_WinZone_area_entered(area):
-	emit_signal("level_complete")
-	print("IN ENDZONE")
