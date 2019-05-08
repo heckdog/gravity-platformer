@@ -1,15 +1,18 @@
 extends KinematicBody2D
 
+# signals
+signal wham
+
 # Declare member variables here.
 var state = "down"
 var impact
 
 var gravity = 2000
-var max_walkspeed = 350
+export var max_walkspeed = 400
 var walkspeed = 0
 var velocity = Vector2()
 export var terminal_velocity = 3500
-var wham_count = 0
+var wham_count = 1
 
 var spikes = null
 var completable = false  # by default. see _ready()
@@ -102,14 +105,16 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		var collide_name = collision.collider.name
 		if collide_name != "TileMap":
-			print("Collided with: ", collide_name)
+			pass
+			#print("Collided with: ", collide_name)  
+			# use collide_name to check the name of a colision. this will stay inactive otherwise.
 	
 	# Hit Sound
 	var new_posy = round(position.y)
 	if old_posy != new_posy:
 		if velocity.y == 0:
 			$Impact.play()
-			print(abs(new_posy-old_posy))
+			#print(abs(new_posy-old_posy))  # for debug
 			
 		# WHAM
 		print(abs(old_speed-velocity.y))
@@ -117,6 +122,7 @@ func _physics_process(delta):
 			print("WHAM " + str(wham_count))
 			wham_count += 1
 			$Wham.play()
+			emit_signal("wham")  # for wham buttons or attacks when they become a thing
 			
 			var cam = $Camera2D
 			cam.offset.x = rand_range(0,10)

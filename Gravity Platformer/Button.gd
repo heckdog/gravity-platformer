@@ -1,0 +1,23 @@
+extends Area2D
+
+signal pressed
+
+# Declare member variables here. Examples:
+var player
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	if get_parent().has_node("Player"):
+		var player = "../Player"
+	else:
+		print("WARNING: Player not found in level for Button.")
+	connect("body_entered", self, "_on_Button_body_entered")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+func _on_Button_body_entered(body):
+	if body.name == "Player":
+		print("Button Pressed at: " + str(position))  # just for reference
+		$anim.animation = "pressed"
