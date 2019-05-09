@@ -106,7 +106,14 @@ func _physics_process(delta):
 		var collide_name = collision.collider.name
 		if collide_name != "TileMap":
 			pass
-			#print("Collided with: ", collide_name)  
+			# I refuse to allow this code to be run in such a bad state. Make this a signal.
+			"""
+			if collide_name.substr(0,5) == "Spike":
+				$Uuhhh.play()
+				globals.player["lives"] -= 1
+				yield(get_tree().create_timer(.5), "timeout")
+				get_tree().reload_current_scene()
+			"""
 			# use collide_name to check the name of a colision. this will stay inactive otherwise.
 	
 	# Hit Sound
@@ -117,12 +124,14 @@ func _physics_process(delta):
 			#print(abs(new_posy-old_posy))  # for debug
 			
 		# WHAM
-		print(abs(old_speed-velocity.y))
+		# print(abs(old_speed-velocity.y)) use only for debug, otherwise its kinda annoying
 		if abs(old_speed-velocity.y) >= 3100:  # 3100 is the px/s speed required to create a WHAM
 			print("WHAM " + str(wham_count))
 			wham_count += 1
 			$Wham.play()
 			emit_signal("wham")  # for wham buttons or attacks when they become a thing
+			
+			velocity.x = 0  # makes you have to regain speed
 			
 			var cam = $Camera2D
 			cam.offset.x = rand_range(0,10)
@@ -134,4 +143,6 @@ func _physics_process(delta):
 			cam.offset.y = rand_range(-20,0)
 			yield(get_tree().create_timer(.1), "timeout")
 			cam.offset = Vector2(0,0)
+			
+			
 	

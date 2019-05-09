@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://assests/StartHalfSize.png" type="Texture" id=2]
 [ext_resource path="res://assests/StartHalfSizePressed.png" type="Texture" id=3]
 [ext_resource path="res://assests/StartHalfSizeHover.png" type="Texture" id=4]
-[ext_resource path="res://Title.png" type="Texture" id=5]
+[ext_resource path="res://assests/ControlsButtonPressed.png" type="Texture" id=5]
+[ext_resource path="res://assests/ControlsButtonHover.png" type="Texture" id=6]
+[ext_resource path="res://Title.png" type="Texture" id=7]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+load_path = "res://.import/ControlsButton.png-5a1ecb7c2a18f4db24bc0916e8236edc.stex"
 
 [node name="MainMenu" type="Control"]
 margin_right = 1050.0
@@ -19,13 +25,26 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -75.0
+margin_left = -165.0
 margin_top = -119.0
-margin_right = 75.0
+margin_right = -15.0
 margin_bottom = -19.0
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
+
+[node name="ControlsButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 45.0
+margin_top = -119.0
+margin_right = 195.0
+margin_bottom = -19.0
+texture_normal = SubResource( 1 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
 
 [node name="Logo" type="TextureRect" parent="."]
 anchor_left = 0.5
@@ -36,4 +55,4 @@ margin_left = -344.5
 margin_top = -229.0
 margin_right = 344.5
 margin_bottom = 153.0
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )

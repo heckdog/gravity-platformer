@@ -1,6 +1,7 @@
 extends Area2D
 
 signal pressed
+var is_pressed = false
 
 # Declare member variables here. Examples:
 var player
@@ -18,6 +19,8 @@ func _ready():
 #	pass
 
 func _on_Button_body_entered(body):
-	if body.name == "Player":
+	if body.name == "Player" and not is_pressed:
 		print("Button Pressed at: " + str(position))  # just for reference
 		$anim.animation = "pressed"
+		$Beep.play()
+		is_pressed = true

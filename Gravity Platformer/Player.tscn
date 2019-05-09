@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assests/UpBox.png" type="Texture" id=2]
 [ext_resource path="res://assests/DownBox.png" type="Texture" id=3]
 [ext_resource path="res://assests/Switch.wav" type="AudioStream" id=4]
 [ext_resource path="res://assests/Impact.wav" type="AudioStream" id=5]
-[ext_resource path="res://assests/Splosion.wav" type="AudioStream" id=6]
+[ext_resource path="res://Camera2D.gd" type="Script" id=6]
+[ext_resource path="res://assests/Splosion.wav" type="AudioStream" id=7]
+[ext_resource path="res://assests/uuhhh.wav" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24.5, 24.5 )
@@ -47,7 +49,11 @@ stream = ExtResource( 5 )
 current = true
 limit_left = 0
 limit_top = 0
+script = ExtResource( 6 )
 
 [node name="Wham" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 7 )
 pitch_scale = 0.7
+
+[node name="Uuhhh" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )

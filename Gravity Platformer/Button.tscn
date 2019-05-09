@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Button.gd" type="Script" id=1]
 [ext_resource path="res://assests/ButtonBase.png" type="Texture" id=2]
 [ext_resource path="res://assests/ButtonPressed.png" type="Texture" id=3]
+[ext_resource path="res://assests/ButtonNoiseShort.wav" type="AudioStream" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -42,3 +43,6 @@ visible = false
 position = Vector2( 0, 20 )
 rotation = -1.57079
 shape = SubResource( 3 )
+
+[node name="Beep" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
