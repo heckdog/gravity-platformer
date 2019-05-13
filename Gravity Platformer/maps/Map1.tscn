@@ -39,4 +39,5 @@ position = Vector2( 475, 525 )
 
 [node name="Spike3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 525, 525 )
+
 [connection signal="area_entered" from="WinZone" to="Player" method="_on_WinZone_area_entered"]

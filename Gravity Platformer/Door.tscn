@@ -1,0 +1,64 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Door.gd" type="Script" id=1]
+[ext_resource path="res://assests/new_door/testanim12.png" type="Texture" id=2]
+[ext_resource path="res://assests/new_door/testanim1.png" type="Texture" id=3]
+[ext_resource path="res://assests/new_door/testanim2.png" type="Texture" id=4]
+[ext_resource path="res://assests/new_door/testanim3.png" type="Texture" id=5]
+[ext_resource path="res://assests/new_door/testanim4.png" type="Texture" id=6]
+[ext_resource path="res://assests/new_door/testanim5.png" type="Texture" id=7]
+[ext_resource path="res://assests/new_door/testanim6.png" type="Texture" id=8]
+[ext_resource path="res://assests/new_door/testanim7.png" type="Texture" id=9]
+[ext_resource path="res://assests/new_door/testanim8.png" type="Texture" id=10]
+[ext_resource path="res://assests/new_door/testanim9.png" type="Texture" id=11]
+[ext_resource path="res://assests/new_door/testanim10.png" type="Texture" id=12]
+[ext_resource path="res://assests/new_door/testanim11.png" type="Texture" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "open",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "closed",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 2 ) ],
+"loop": false,
+"name": "rising",
+"speed": 24.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": false,
+"name": "closing",
+"speed": 24.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 25, 25 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 25, 25 )
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource( 1 )
+
+[node name="anim" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "closing"
+frame = 11
+playing = true
+
+[node name="DoorTopCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, -25 )
+shape = SubResource( 2 )
+
+[node name="BottomDoorCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 25 )
+shape = SubResource( 3 )
+

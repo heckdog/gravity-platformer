@@ -65,11 +65,11 @@ func get_input():
 	
 	# movement w/ acceleration (accel = exponentional halves)
 	if left and shift:
-		walkspeed = -3 # precision move
+		walkspeed = -10 # precision move
 	elif left:  # check for left after the check for shifted.
 		walkspeed += (-max_walkspeed - walkspeed-1)/2  # negative average of walkspeed to max
 	if right and shift:
-		walkspeed = 3
+		walkspeed = 10
 	elif right:  # same check, but for right
 		walkspeed += (max_walkspeed + walkspeed+1)/2  # average of walkspeed to max
 	if not left or right:

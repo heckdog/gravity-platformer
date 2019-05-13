@@ -3,7 +3,7 @@
 [ext_resource path="res://assests/tiles/GenericTile.png" type="Texture" id=1]
 [ext_resource path="res://assests/tiles/Background.png" type="Texture" id=2]
 [ext_resource path="res://assests/tiles/Background2.png" type="Texture" id=3]
-[ext_resource path="res://assests/tiles/Grass.png" type="Texture" id=4]
+[ext_resource path="res://assests/tiles/CoolGrass.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25, 25 )
@@ -42,3 +42,4 @@ collision_mask = 15
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grass/StaticBody2D"]
 visible = false
 shape = SubResource( 2 )
+
