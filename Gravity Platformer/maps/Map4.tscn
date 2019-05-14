@@ -9,7 +9,6 @@
 
 [node name="WinZone" parent="." instance=ExtResource( 1 )]
 position = Vector2( 725, 525 )
-next_level = "VelocityTest"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
@@ -29,3 +28,4 @@ position = Vector2( 125, 525 )
 
 [node name="LevelBound" type="Position2D" parent="."]
 position = Vector2( 1050, 600 )
+

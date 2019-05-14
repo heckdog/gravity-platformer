@@ -29,3 +29,4 @@ next_level = "Map3"
 
 [node name="LevelBound" type="Position2D" parent="."]
 position = Vector2( 1050, 600 )
+
