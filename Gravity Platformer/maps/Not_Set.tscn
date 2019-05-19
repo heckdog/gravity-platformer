@@ -13,7 +13,7 @@ font_data = ExtResource( 5 )
 [node name="Not_Set_Room" type="Node2D"]
 
 [node name="WinZone" parent="." instance=ExtResource( 1 )]
-position = Vector2( 725, 525 )
+position = Vector2( 850, 300 )
 next_level = "Map1"
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -44,3 +44,4 @@ custom_fonts/font = SubResource( 1 )
 text = "If you're in this room, the developer forgot to set the next room. Go nag him about that. Anyways, this WinZone will take you back to the beginning. Have a nice trip."
 align = 1
 autowrap = true
+
